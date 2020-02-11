@@ -18,10 +18,10 @@ export const Navbar = () => {
             <NavLink to="/create">Erstellen</NavLink>
           </li>
           <li>
-            <NavLink to="/myTexten">Alle Eintrag</NavLink>
+            <NavLink to="/myEntry">Alle Einträge</NavLink>
           </li>{" "}
           <li>
-            <a hhref="/" onClick={logoutHandler}>
+            <a href="/" onClick={logoutHandler}>
               Abmelden
             </a>
           </li>

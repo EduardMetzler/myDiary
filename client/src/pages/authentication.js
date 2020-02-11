@@ -43,6 +43,14 @@ export const Authentication = () => {
         ...formRegister
       });
       console.log("Data", data);
+      //////
+
+      console.log(formLogin);
+      const dataf = await request("/api/auth/login", "POST", {
+        ...formRegister
+      });
+      auth.login(dataf.token, dataf.userId);
+      ///////
     } catch (e) {}
   };
 
@@ -92,7 +100,7 @@ export const Authentication = () => {
                 </div>
                 <div className="card-action">
                   <button
-                    className="btn yellow darken-4"
+                    className="btn yellow darken-4 waves-effect waves-light"
                     style={{ marginRight: 10 }}
                     onClick={registerHandler}
                     disabled={loading}
@@ -131,7 +139,7 @@ export const Authentication = () => {
                 </div>
                 <div className="card-action">
                   <button
-                    className="btn yellow darken-4"
+                    className="btn yellow darken-4 waves-effect waves-light"
                     style={{ marginRight: 10 }}
                     onClick={loginHandler}
                     disabled={loading}
