@@ -5,6 +5,7 @@ import { Authentication } from "./pages/authentication";
 import { Lobby } from "./pages/lobby";
 import { MyEntry } from "./pages/myEntry";
 import { Create } from "./pages/create";
+import { OneEntry } from "./pages/oneEntry";
 
 export const useRoutes = isAuthenticated => {
   if (isAuthenticated) {
@@ -18,6 +19,9 @@ export const useRoutes = isAuthenticated => {
         </Route>
         <Route path="/lobby" exact>
           <Lobby />
+        </Route>
+        <Route path="/oneEntry/:id">
+          <OneEntry />
         </Route>
 
         <Redirect to="/lobby" />

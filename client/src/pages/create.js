@@ -1,19 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useHttp } from "../hooks/http.hook";
 import { AuthContext } from "../context/AuthContext";
-// import { useMessage } from "../hooks/message.hook";
 
 export const Create = () => {
-  // const message = useMessage();
-
+  const history = useHistory(9);
   const auth = useContext(AuthContext);
   const { loading, request } = useHttp();
 
   const [text, setText] = useState("");
-  // useEffect(() => {
-  //   message("error");
-  //   // clearError();
-  // }, [message]);
+
   const changeHandlerText = event => {
     setText({
       ...text,
@@ -30,23 +27,36 @@ export const Create = () => {
         { text },
         { Authorization: `Bearer ${auth.token}` }
       );
-      //   auth.login(data.token, data.userId);
+
+      console.log(data);
+      history.push(`/lobby`);
     } catch (e) {}
   };
 
   return (
-    // <textarea rows="111" cols="50" placeholder="Geben Sie Ihre Text"></textarea>
     <div className="input-field col s12">
-      <textarea
-        id="textarea1"
-        className="materialize-textarea"
-        name="myText"
-        // onChange={e => setText(e.target.value)}
-        onChange={changeHandlerText}
+      {/* <div className="input-field ">
+        <input
+          // placeholder="Überschrift"
+          type="text"
+          name="heading"
+          className="materialize-textarea"
+          // onChange={changeHandlerRegister}
+        />
+        <label htmfor="heading">Überschrift</label>
+      </div> */}
+      <div className="input-field">
+        <textarea
+          id="textarea1"
+          className="materialize-textarea"
+          name="myText"
+          onChange={changeHandlerText}
 
-        // rows="20"
-      ></textarea>
-      <label htmfor="textarea1">Ihre Eintrag</label>
+          // rows="20"
+        ></textarea>
+        <label htmfor="textarea1">Ihre Eintrag</label>
+      </div>
+
       <button
         onClick={textHandler}
         className="btn yellow darken-4 waves-effect waves-light"

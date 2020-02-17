@@ -10,10 +10,12 @@ const router = Router();
 
 router.post("/", auth, async (req, res) => {
   try {
+    // const baseUrl = config.get("baseUrl");
+
     const { text } = req.body.text;
     console.log(text, req.user.userId);
     const myText = new Text({
-      texts: text,
+      oneText: text,
       owner: req.user.userId
     });
     console.log(myText);
@@ -23,5 +25,14 @@ router.post("/", auth, async (req, res) => {
     res.status(500).json({ message: "Die daten sind nicht korrekt" });
   }
 });
+
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     const links = await Link.find({ owner: req.user.userId });
+//     res.send(links);
+//   } catch (e) {
+//     res.status(500).json({ message: "Etwas schif gelaufen" });
+//   }
+// });
 
 module.exports = router;

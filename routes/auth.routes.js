@@ -140,41 +140,41 @@ const router = Router();
 router.post(
   "/register",
   [
-    check("email", "schlechte email").isEmail(),
+    check("email", "das ist kein email").isEmail(),
     check("password", "min länge 6 zeichen").isLength({ min: 6 })
   ],
 
   async (req, res) => {
-    console.log("wwqew");
+    // console.log("wwqew");
 
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "falsche daten bei registrirung"
+          message: "Falsche daten bei registrirung"
         });
       }
 
       const { email, password } = req.body;
-      console.log(req.body, email, password);
+      // console.log(req.body, email, password);
       const candidate = await User.findOne({ email });
 
-      console.log(candidate);
+      // console.log(candidate);
 
       if (candidate) {
-        return res.status(400).json({ message: "user bereits exestirt" });
+        return res.status(400).json({ message: "User bereits existiert" });
       }
-      console.log("r");
+      // console.log("r");
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      console.log(hashedPassword);
+      // console.log(hashedPassword);
       const user = new User({ email, password: hashedPassword });
 
-      console.log(user);
+      // console.log(user);
 
       await user.save();
-      res.status(201).json({ message: "user ist registrirt" });
+      res.status(201).json({ message: "Du bist registriert" });
     } catch (e) {
       res.status(500).json({ message: "Die daten sind nicht korrekt" });
     }
@@ -184,10 +184,10 @@ router.post(
 router.post(
   "/login",
   [
-    check("email", "geben Sie korrekte email")
+    check("email", "Email oder passwort falsch")
       .normalizeEmail()
       .isEmail(),
-    check("password", "geben Sie password").exists()
+    check("password", "Email oder passwort falsch").exists()
   ],
   async (req, res) => {
     try {
@@ -195,20 +195,20 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "falsche daten bei login"
+          message: "Email oder passwort falsch"
         });
       }
       const { email, password } = req.body;
       const user = await User.findOne({ email });
-      console.log("1");
+      // console.log("1");
       if (!user) {
-        console.log("1");
-        return res.status(400).json({ message: "falsche password" });
+        // console.log("1");
+        return res.status(400).json({ message: "Email oder passwort falsch" });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       console.log(password);
       if (!isMatch) {
-        return res.status(400).json({ message: "Fersuch noch mal" });
+        return res.status(400).json({ message: "Email oder passwort falsch" });
       }
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecter"), {
         expiresIn: "1h"
