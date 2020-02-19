@@ -12,3 +12,22 @@ input.yellow-input:focus {
   border-bottom: 1px solid #ffeb3b !important;
   box-shadow: 0 1px 0 0 #ffeb3b !important;
 }
+
+.footer {
+  /* position: absolute !important;
+  bottom: 0 !important;
+  width: 100%;
+  background-color: yellow;
+  height: 246px !important; */
+}
+.con {
+  min-height: 100vh !important;
+}
+
+.nav {
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 100;
+
+  /* width: 100% !important; */
+}

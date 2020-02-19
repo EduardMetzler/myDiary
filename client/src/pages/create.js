@@ -9,22 +9,30 @@ export const Create = () => {
   const auth = useContext(AuthContext);
   const { loading, request } = useHttp();
 
-  const [text, setText] = useState("");
+  const [antry, setAntry] = useState({ heading: "", text: "" });
+  // const [heading, setHeading] = useState("");
 
-  const changeHandlerText = event => {
-    setText({
-      ...text,
+  // const changeHandlerText = event => {
+  //   setText({
+  //     ...text,
 
-      text: event.target.value
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
+  const changeHandlerAntry = event => {
+    setAntry({
+      ...antry,
+      [event.target.name]: event.target.value
     });
   };
   const textHandler = async () => {
+    console.log(antry);
     try {
-      console.log(text);
+      // console.log(text);
       const data = await request(
         "/api/create",
         "POST",
-        { text },
+        { ...antry },
         { Authorization: `Bearer ${auth.token}` }
       );
 
@@ -35,22 +43,22 @@ export const Create = () => {
 
   return (
     <div className="input-field col s12">
-      {/* <div className="input-field ">
+      <div className="input-field ">
         <input
           // placeholder="Überschrift"
           type="text"
           name="heading"
           className="materialize-textarea"
-          // onChange={changeHandlerRegister}
+          onChange={changeHandlerAntry}
         />
         <label htmfor="heading">Überschrift</label>
-      </div> */}
+      </div>
       <div className="input-field">
         <textarea
-          id="textarea1"
+          id="text"
           className="materialize-textarea"
-          name="myText"
-          onChange={changeHandlerText}
+          name="text"
+          onChange={changeHandlerAntry}
 
           // rows="20"
         ></textarea>

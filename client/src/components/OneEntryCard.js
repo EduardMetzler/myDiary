@@ -7,10 +7,15 @@ export const OneEntryCard = ({ oneEntry }) => {
       <div className="col s12 ">
         <div className="card  pink accent-1">
           <div className="card-content black-text">
-            <div> {new Date(oneEntry.date).toLocaleDateString()}</div>
-            <span className="card-title">Card Title</span>
+            <div>
+              {" "}
+              Erstellt am: {new Date(oneEntry.date).toLocaleDateString()}, um:{" "}
+              {new Date(oneEntry.date).toLocaleTimeString()}
+            </div>
+            {/* <span className="card-title">{oneEntry.oneHeading}</span> */}
+            <p>Überschrift: {oneEntry.oneHeading}</p>
 
-            <p>{oneEntry.oneText}</p>
+            <p className="flow-text">Eintrag: {oneEntry.oneText}</p>
           </div>
         </div>
       </div>

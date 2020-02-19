@@ -10,12 +10,16 @@ const router = Router();
 
 router.post("/", auth, async (req, res) => {
   try {
-    // const baseUrl = config.get("baseUrl");
+    // console.log(req.body.text);
 
-    const { text } = req.body.text;
-    console.log(text, req.user.userId);
+    // const { text } = req.body.antry.text;
+    // const { heading } = req.body.antry.heading;
+    const { text, heading } = req.body;
+
+    // console.log(text, req.user.userId);
     const myText = new Text({
       oneText: text,
+      oneHeading: heading,
       owner: req.user.userId
     });
     console.log(myText);

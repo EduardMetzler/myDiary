@@ -13,11 +13,14 @@ export const MyEntry = () => {
       const fetch = await request("/api/myEntry", "GET", null, {
         Authorization: `Bearer ${token}`
       });
+      fetch.reverse();
       setTexts(fetch);
       // console.log(loading);
     } catch (e) {}
   }, [token, request]);
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+
     fetchMyTexts();
   }, [fetchMyTexts]);
   console.log(texts);
@@ -28,16 +31,3 @@ export const MyEntry = () => {
 
   return <>{!loading && <TextsListe texts={texts} />}</>;
 };
-
-//   const textHandler = async () => {
-//     try {
-//       // console.log(text);
-//       const data = await request("/api/myEntry", "GET", null, {
-//         Authorization: `Bearer ${token}`
-//       });
-//       //   auth.login(data.token, data.userId);
-//       console.log(data);
-//     } catch (e) {}
-//   };
-//   return <div onClick={textHandler}>alle einträe</div>;
-// };

@@ -18,20 +18,6 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// router.get("/:id", auth, async (req, res) => {
-//   console.log("req.params.id");
-//   try {
-//     const oneEntry = await Text.findById(req.params.id);
-//     // const oneEntry = await Text.findById(req.params.id);
-
-//     // console.log(link);
-
-//     res.json(oneEntry);
-//   } catch (e) {
-//     res.status(500).json({ message: "Etwas schif gelaufen" });
-//   }
-// });
-
 router.get("/:id", auth, async (req, res) => {
   console.log(req.params.id);
   try {

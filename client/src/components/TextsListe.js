@@ -14,10 +14,13 @@ export const TextsListe = ({ texts }) => {
               <div className="col s12 ">
                 <div className="card  blue lighten-5">
                   <div className="card-content black-text">
-                    <div> {new Date(text.date).toLocaleDateString()}</div>
-                    <span className="card-title">Card Title</span>
+                    <div>
+                      Erstellt am: {new Date(text.date).toLocaleDateString()}
+                    </div>
+                    {/* <span className="card-title">Card Title</span> */}
+                    <p>Überschrift: {text.oneHeading}</p>
 
-                    <p>{text.oneText}</p>
+                    <p className="flow-text">Eintrag: {text.oneText}</p>
                   </div>
                 </div>
               </div>

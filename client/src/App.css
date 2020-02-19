@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* body {
+  height: 100%;
+}
+
+#all {
+  position: relative !important;
+  min-height: 100vh !important;
+  width: 100%;
+  margin: 0 auto !important;
+  
+}
+
+#page {
+
+  padding-bottom: 246px !important;
+} */
