@@ -8,7 +8,7 @@ app.use(express.json({ extended: true }));
 app.use("/api/auth", require("./routes/auth.routes.js"));
 app.use("/api/create", require("./routes/create.routes"));
 app.use("/api/myEntry", require("./routes/allTexts.routes"));
-// app.use("/api/oneEntry", require("./routes/oneEntry.routes"));
+app.use("/api/oneEntry", require("./routes/oneEntry.routes"));
 
 const PORT = config.get("port") || 5000;
 async function start() {
